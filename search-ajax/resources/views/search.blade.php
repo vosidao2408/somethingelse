@@ -1,54 +1,69 @@
-<!DOCTYPE html>
 <html>
-<head>
-<meta name="_token" content="{{ csrf_token() }}">
-<title>Live Search</title>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-</head>
-<body>
-<div class="container">
-<div class="row">
-<div class="panel panel-default">
-<div class="panel-heading">
-<h3>Products info </h3>
-</div>
-<div class="panel-body">
-<div class="form-group">
-<input type="text" class="form-controller" id="search" name="search"></input>
-</div>
-<table class="table table-bordered table-hover">
-<thead>
-<tr>
-<th>ID</th>
-<th>Title</th>
-<th>Address</th>
-<th>Contact</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<script type="text/javascript">
-$('#search').on('keyup',function(){
-$value=$(this).val();
-$.ajax({
-type : 'get',
-url : '{{URL::to('search')}}',
-data:{'search':$value},
-success:function(data){
-$('tbody').html(data);
-}
-});
-})
-</script>
-<script type="text/javascript">
-$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-</script>
-</body>
+ <head>
+  <title>Live search in laravel using AJAX</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ </head>
+ <body>
+  <br />
+  <div class="container box">
+   <h3 class="text-center">Live search in laravel using AJAX</h3><br />
+   <div class="panel panel-default">
+    <div class="panel-heading">Search Articles Data</div>
+    <div class="panel-body">
+     <div class="form-group">
+      <input type="text" name="search" id="search" class="form-control" placeholder="Input To Search Article Or Category" />
+     </div>
+     <div class="table-responsive">
+      <h3 class="text-center">Total Data : <span id="total_records"></span></h3>
+      <table class="table table-striped table-bordered">
+       <thead>
+        <tr>
+         <th>ID</th>
+         <th>Title</th>
+         <th>Address</th>
+         <th>Contact</th>
+         <th>Status</th>
+        </tr>
+       </thead>
+       <tbody>
+       </tbody>
+      </table>
+      
+     </div>
+    </div>    
+   </div>
+  </div>
+ </body>
 </html>
+
+<script>
+        $(document).ready(function(){
+        
+         fetch_article_data();
+        
+         function fetch_article_data(query = '')
+         {
+          $.ajax({
+           url:"{{ route('search') }}",
+           method:'GET',
+           data:{query:query},
+           dataType:'json',
+           success:function(data)
+           {
+            $('tbody').html(data.table_data);
+            $('#total_records').text(data.total_data);
+           }
+          })
+         }
+        
+         $(document).on('keyup', '#search', function(){
+          var query = $(this).val();
+          fetch_article_data(query);
+         });
+        });
+        </script>
+
+        
+
