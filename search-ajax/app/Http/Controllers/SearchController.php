@@ -66,4 +66,25 @@ class SearchController extends Controller
                 return Response()->json($data);
             }
         }
+        public function getdata(Request $request){
+            if($request->ajax()){
+                $output = '';
+                $query = $request->get('query');
+                if($query != ''){
+                    $data = Article::where('address','like','%'.$query.'%')
+                    ->orderBy('id','asc')
+                    ->get();
+                }
+                else{
+                      $data = Article::orderBy('id','asc')->get();
+                    }
+                $total_row = $data->count();
+                
+                $data = array(
+                    'table_data'  => $data,
+                    'total_data'  => $total_row
+                   );  
+                return Response()->json($data);
+            }
+        }
 }

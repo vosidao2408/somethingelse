@@ -14,7 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/pagination', 'PaginationController@index');
 
-Route::get('/articles','SearchController@index');
-Route::get('/articles/search','SearchController@search')->name('search');
-
+Route::get('/pagination/fetch_data', 'PaginationController@fetch_data')->name('search');
