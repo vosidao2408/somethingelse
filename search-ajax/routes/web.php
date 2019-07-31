@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::get('/','SearchController@index');
 Route::get('/search','SearchController@search')->name('search');
+
