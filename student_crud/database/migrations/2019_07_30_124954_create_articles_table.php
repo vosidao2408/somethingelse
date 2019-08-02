@@ -22,9 +22,11 @@ class CreateArticlesTable extends Migration
             $table->integer('contact');
             $table->string('status')->default('Con Trong');
             $table->string('image_path');
-            $table->integer('id_category')->references('id')->on('categories');
+            $table->integer('category_id');   
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
+        
     }
 
     /**

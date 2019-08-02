@@ -14,9 +14,9 @@
     <div class="col-md-9">
 
     </div>
-    <div class="col-md-3">
+    <div class="col-md-12">
      <div class="form-group">
-      <input type="text" name="search" id="search" class="form-control" />
+      <input type="text" name="search" id="search" class="form-control" placeholder="Input TO Search"/>
      </div>
     </div>
    </div>
