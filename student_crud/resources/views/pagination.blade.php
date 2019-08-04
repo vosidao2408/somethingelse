@@ -7,9 +7,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   
  </head>
- <body>
-  <h3 class="text-center mt-3">Welcome to Bantro.vn</h3>
-  <div class="container-fluid mt-3">
+ <body   style="background-color:#F0FFFF;">
+  <h3 class="text-center mt-3 ">Welcome to Bantro.vn</h3>
+  <div class="container-fluid mt-3 " >
     <div class="row">
       <div class="col-3"></div>
       <div class="col-6">
@@ -17,7 +17,7 @@
           <div class="col-12">
               <input type="text" name="search" id="search" class="form-control" placeholder="Input Address Or District To Search"/>
               <div class="row">
-                <div class="col-12"  style="background-color:#F0FFFF;">
+                <div class="col-12">
                   <div id="items">
                       @include('pagination_data')
                     </div>    
