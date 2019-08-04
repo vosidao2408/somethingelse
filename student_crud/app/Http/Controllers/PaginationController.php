@@ -25,20 +25,17 @@ class PaginationController extends Controller
                 $data = Article::orderBy('id','asc')->paginate(10);
                }
                else{
-      
                 $articles = $data = Article::where('title', 'like', '%'.$query.'%')
                 ->orWhere('address', 'like', '%'.$query.'%')
                 ->orderBy('id','asc')
                 ->paginate(10);
 
-                if($articles->toArray() == ''){
-                    $data = Category::where('district','like','%'.$query.'%')->first();
-                    //->articles()->paginate(10);
-                }
+                // if($articles->toArray() == ''){
+                //     $data = Category::where('district','like','%'.$query.'%')->first()
+                //     ->articles()->paginate(10);
+                // }
                }
-               dd($data);
-         return view('pagination_data', compact('data'))->render();
-         
+         return view('pagination_data', compact('data'))->render();     
         }
        }
 }

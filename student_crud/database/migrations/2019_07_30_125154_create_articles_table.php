@@ -14,7 +14,7 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('title');
             $table->string('slug');
             $table->longText('content');
@@ -22,9 +22,9 @@ class CreateArticlesTable extends Migration
             $table->integer('contact');
             $table->string('status')->default('Con Trong');
             $table->string('image_path');
-            $table->integer('category_id');   
+            $table->unsignedInteger('category_id');
             $table->timestamps();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
         
     }

@@ -1,14 +1,16 @@
 @foreach($data as $row)
-<tr>
- <td>{{ $row->id}}</td>
- <td>{{ $row->title }}</td>
- <td>{{ $row->address }}</td>
-<td>{{$row->contact}}</td>
-<td>{{$row->status}}</td>
-</tr>
+<div class="box-sizing border my-3 bg-light">
+        <div class="m-2">
+          <div id="bg-image"></div>
+          <span class="badge badge-primary">User</span>
+        </div>
+        <a class="" href="#" style="text-decoration: none">
+        <div class="ml-4 text-dark overflow-hidden">{!!$row->content!!}</div>
+        </a>
+      <p class="ml-4 text-muted"><small>Address: {{$row->address}}</small></p>
+ </div>
 @endforeach
-<tr>
- <td colspan="5" class="text-center">
-  {!! $data->links() !!}
- </td>
-</tr>
+
+<div class="d-flex justify-content-center align-items-center">{!! $data->links() !!}</div>
+
+
